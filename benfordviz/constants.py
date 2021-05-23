@@ -9,7 +9,7 @@ BACKGROUND_COLOR = colors["b"]
 EXPECT_BAR_COLOR = colors["t"]
 
 TOOLTIPS_BASE = [
-    # insert ("Digits", f"@{dft.index.name}" + "{" + n_int_places * "0" +
+    # insert ("Digits", f"@{data.index.name}" + "{" + n_int_places * "0" +
     #  "}") in pos 0
     ("Expected", "@Expected{0.0000%}"),
     ("Found", "@Found{0.0000%}"),
