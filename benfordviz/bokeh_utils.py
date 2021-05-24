@@ -1,10 +1,8 @@
 from math import pi
-from numpy import array
 from bokeh.models import NumeralTickFormatter
 from bokeh.models.tools import HoverTool
 from bokeh.models.tickers import FixedTicker
 from bokeh.plotting import figure, ColumnDataSource
-from benford import Test
 from .constants import (EXPECT_LINE_COLOR, BACKGROUND_COLOR,
                         OUT_OF_BOUNDS_BAR_COLOR , TOOLTIPS_BASE)
 from .utils import (_get_in_out_bound_colors_, _get_upper_lower_bounds,
