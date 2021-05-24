@@ -1,4 +1,4 @@
-from benford.constants import colors #, dark_colors
+from benford.constants import COLORS #, dark_colors
 
 COLOR_MODE = "light"
 
@@ -9,5 +9,5 @@ def set_color_mode(mode="light"):
 
 def get_color_mode():
     if COLOR_MODE == "light":
-        return colors
+        return COLORS
     # return dark_colors
