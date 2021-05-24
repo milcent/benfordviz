@@ -18,7 +18,7 @@ setup(name='benfordviz',
       license='BSD 3-Clause',
       packages=['benfordviz'],
       install_requires=[
-          'benford-py',
+          'benford-py>=0.4.2',
           'bokeh'
       ],
       zip_safe=False,
