@@ -28,7 +28,7 @@ def add_figure(digit_test):
     max_y = max(digit_test.Found.max(), digit_test.Expected.max())
     len_dig = len(digit_test)
     n_int_places = _set_n_int_places_(len_dig)
-    ratio = 3 if len_dig == 100 else 1.5
+    ratio = 3.2 if len_dig == 100 else 2.1
 
     fig = figure(
         title=digit_test.name, x_range=_get_x_range_(digit_test.index),
@@ -62,7 +62,7 @@ def add_figure(digit_test):
                 color="colors", source=source)
         fig.varea(x=name, y1="lower", y2="upper", fill_alpha=.4, level="underlay",
                 source=source, fill_color=EXPECT_LINE_COLOR,
-                legend_label="Confidence Bounds")
+                legend_label=f"{digit_test.confidence}% Confidence Bounds")
         tooltips = _get_tooltips_(name, n_int_places)
         fig.add_tools(HoverTool(tooltips=tooltips, mode="vline"))
  
@@ -72,8 +72,8 @@ def add_figure(digit_test):
     fig.xaxis[0].formatter = NumeralTickFormatter(format="0" * n_int_places)
     fig.yaxis[0].formatter = NumeralTickFormatter(format="0.0%")
     fig.background_fill_color = BACKGROUND_COLOR
-    fig.legend.background_fill_color = BACKGROUND_COLOR
-    fig.legend.border_line_color = BACKGROUND_COLOR
+    fig.legend.background_fill_color = None
+    fig.legend.border_line_color = None
     fig.legend.click_policy = "hide"
     
     return fig
