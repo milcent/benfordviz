@@ -91,4 +91,4 @@ benf_bokeh_f2d_fig = bokeh_chart(bo.F2D)
 show(benf_bokeh_f2d_fig)
 ```
 
-![First Two Digits Bokeh gif](figures/f2d_bokeh_gif.gif)
+![First Two Digits Bokeh gif](https://github.com/milcent/benfordviz/blob/main/figures/f2d_bokeh_gif.gif)
