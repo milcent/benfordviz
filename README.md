@@ -68,7 +68,7 @@ Number of discarded entries for each test:
 {'F1D': 0, 'F2D': 0, 'F3D': 0, 'SD': 0, 'L2D': 1}
 ```
 
-Now that you have a Benford object with the main tests already computed, you can give them do `benfordviz` and let it do the rest. The main function for plotting the respective test with `bokeh` is the `bokeh_chart`. It receives a digit test instance, which in turn is an attribute of the Benford object:
+Now that you have a Benford object with the main tests already computed, you can give them to `benfordviz` and let it do the rest. The main function for plotting the respective test with `bokeh` is the `bokeh_chart`. It receives a digit test instance, which in turn is an attribute of the Benford object:
 
 - `F1D`: First Digit Test;
 - `SD`: Second Digit Test;
@@ -76,7 +76,7 @@ Now that you have a Benford object with the main tests already computed, you can
 - `F3D`: First Three Digits Test; and
 - `L2D`: Last Two Digits Test.
 
-The `bokeh_chart` function then retuns a `bokeh` `figure`, which you can then give to the output of your choice (browser, file, jupyter...)
+The `bokeh_chart` function then retuns a `bokeh` `figure`, which you can then pass to the output of your choice (browser, file, jupyter...)
 
 ```{Python}
 from bokeh.plotting import output_notebook, show
