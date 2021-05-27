@@ -19,7 +19,7 @@ setup(name='benfordviz',
       packages=['benfordviz'],
       install_requires=[
           'benford-py>=0.4.2',
-          'bokeh'
+          'bokeh>=2.2.2'
       ],
       zip_safe=False,
       classifiers=[
