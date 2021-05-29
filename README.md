@@ -44,7 +44,7 @@ If you find *`benfordviz`* useful in your research, please consider adding the f
 
 Have your data ingested in a `benford_py` Benford obect like so:
 
-```{Python}
+```python
 import numpy as np
 import benford as bf
 
@@ -57,7 +57,7 @@ abd = a * b * c
 bo = bf.Benford(abc)
 ```
 
-```{Python}
+```
  ########## Benford Object Instantiated ########### 
 
 Initial sample size: 3000.
@@ -78,14 +78,14 @@ Now that you have a Benford object with the main tests already computed, you can
 
 The `bokeh_chart` function then retuns a `bokeh` `figure`, which you can then pass to the output of your choice (browser, file, jupyter...)
 
-```{Python}
+```python
 from bokeh.plotting import output_notebook, show
 from benfordviz import bokeh_chart
 
 output_notebook()
 ```
 
-```{Python}
+```python
 #plotting the First Two Digits Test ('F2D')
 benf_bokeh_f2d_fig = bokeh_chart(bo.F2D)
 show(benf_bokeh_f2d_fig)
