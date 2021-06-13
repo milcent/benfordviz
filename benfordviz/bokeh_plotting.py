@@ -1,6 +1,6 @@
 from benford import Test
 from .checks import _check_digit_test_
-from .bokeh_utils import add_figure
+from .bokeh_utils import add_digit_test_figure
 
 
 class BenfordBokehChart:
@@ -9,4 +9,4 @@ class BenfordBokehChart:
     
     @property
     def figure(self):
-        return add_figure(self.digit_test)
+        return add_digit_test_figure(self.digit_test)

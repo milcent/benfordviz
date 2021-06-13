@@ -21,8 +21,8 @@ def _get_tooltips_(name:str, n_int_places:int,
 
 # LOOONG function! Could be broken into at least three, but did not see 
 # the need for separation
-def add_figure(digit_test):
-
+def add_digit_test_figure(digit_test):
+            
     max_y = max(digit_test.Found.max(), digit_test.Expected.max())
     len_dig = len(digit_test)
     n_int_places = _set_n_int_places_(len_dig)
