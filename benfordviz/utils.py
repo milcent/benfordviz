@@ -1,4 +1,4 @@
-from numpy import array, ceil, log10, sqrt, where
+from numpy import array, ceil, cos, log10, linspace, pi, sin, sqrt, where
 
 from .constants import FOUND_BAR_COLOR
 
@@ -26,3 +26,13 @@ def _get_x_range_(arr): return arr[0] - 1, arr[-1] + 1
 
 def _get_base_bar_colors_(data_len:int, color=FOUND_BAR_COLOR):
     return array([color] * data_len)
+
+
+def _get_expected_mantissas_dist_(data_len:int):
+    return linspace(0, .99999999, data_len)
+
+
+def _get_mantissas_arc_x_y(mantissas):
+    x = cos(2 * pi * mantissas)
+    y = sin(2 * pi * mantissas)
+    gravity_center = x.mean(), y.mean()
