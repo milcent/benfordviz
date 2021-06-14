@@ -1,4 +1,5 @@
-from numpy import array
+from numpy import ndarray
+from pandas import Series
 from benford import Test, Benford, Mantissas
 
 
@@ -10,13 +11,16 @@ def _check_digit_test_(digit_test):
     return digit_test
 
 
-def _check_mantissa_data_(data):
-    if isinstance(data, Benford):
-        data.mantisssas()
-        return data.Mantissas.data.Mantissa.values
-    elif isinstance(data, Mantissas):
-        return data.data.Mantissa.values
-    elif isinstance(data, array):
-        return data
+def _check_mantissa_data_(mant_data):
+    if isinstance(mant_data, ndarray):
+        return mant_data
+    elif isinstance(mant_data, Benford):
+        if not hasattr(mant_data, "Mantissas"):
+            mant_data.mantissas()
+        return mant_data.Mantissas.data.Mantissa.values
+    elif isinstance(mant_data, Mantissas):
+        return mant_data.data.Mantissa.values
+    elif isinstance(mant_data, Series):
+        return mant_data.values
     raise TypeError("This operation accepts one of the following objects as "
         "inputs: benford.Benford, benford.Mantissas, and np.array.")
