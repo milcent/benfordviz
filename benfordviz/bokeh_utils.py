@@ -14,6 +14,9 @@ from .utils import (_get_in_out_bound_colors_, _get_upper_lower_bounds,
 def _get_tooltips_(name:str, n_int_places:int,
                    base_tooltips:list=TOOLTIPS_BASE,
                    upper_lower=True):
+    """Selectes the tooltips list based of the Digits Test provided and the
+    presence or not of lower and upper bounds to values to show
+    """
     tooltips = base_tooltips.copy()
     digit_tooltip = ("Digits", f"@{name}" + "{" + n_int_places * "0" + "}")
     tooltips.insert(0, digit_tooltip)
@@ -24,6 +27,14 @@ def _get_tooltips_(name:str, n_int_places:int,
 # LOOONG function! Could be broken into at least three, but did not see 
 # the need for separation
 def add_digit_test_figure(digit_test):
+    """Builds the Digits Test Figure, based on the digits test provided
+
+    Args:
+        digit_test (benford.Test): instance of digit test
+
+    Returns:
+        bokeh.Figure: figure to be displayed
+    """
             
     max_y = max(digit_test.Found.max(), digit_test.Expected.max())
     len_dig = len(digit_test)
@@ -80,6 +91,14 @@ def add_digit_test_figure(digit_test):
 
 
 def _ordered_mantissas_plot_(mant_dist):
+    """Creates the Ordered Mantissa plot
+
+    Args:
+        mant_dist (numpy.ndarray): array with the mantissas distribution
+
+    Returns:
+        bokeh.Figure: figure to be displayed
+    """
     source = ColumnDataSource(_get_expected_found_mantissas_df_(mant_dist))
     fig = figure(
         title="Ordered Mantissas Plot", x_range=(0,1),
@@ -108,6 +127,14 @@ def _ordered_mantissas_plot_(mant_dist):
 
 
 def _mantissas_arc_plot_(mant_dist):
+    """Creates the Mantissa Arc Plot
+
+    Args:
+        mant_dist (numpy.ndarray): array with Mantissas distribution
+
+    Returns:
+        bokeh.Figure: figure to be displayed
+    """
     arc_df = _get_mantissas_arc_plot_df_(mant_dist)
     gravity_center = arc_df.arc_x.mean(), arc_df.arc_y.mean()
     gc_coords = {
@@ -149,6 +176,14 @@ def _mantissas_arc_plot_(mant_dist):
 
 
 def add_mantissas_test_figures(mant_dist):
+    """Joins the Mantissas (Ordered and Arc) plots
+
+    Args:
+        mant_dist (numpy.ndarray): array with Mantissas distributions
+
+    Returns:
+        bokeh.Row: figure with the two plots figures to be displayed
+    """
     ordered_mant_fig = _ordered_mantissas_plot_(mant_dist)
     mant_arc_fig = _mantissas_arc_plot_(mant_dist)
     return row(ordered_mant_fig, mant_arc_fig)

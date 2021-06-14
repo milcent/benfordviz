@@ -3,6 +3,13 @@ from .bokeh_utils import add_digit_test_figure, add_mantissas_test_figures
 
 
 class BokehDigitsChart:
+    """Holds the Benford Digit Test and generates is respective bokeh
+    chart.
+
+    Args:
+        digit_test (benford.Test): Benford Digit Test to be displayed
+    """
+
     def __init__(self, digit_test):
         self.digit_test = _check_digit_test_(digit_test)
     
@@ -12,8 +19,16 @@ class BokehDigitsChart:
 
 
 class BokehMantissasChart:
-    def __init__(self, data):
-        self.mantissas = _check_mantissa_data_(data)
+    """Holds the Benford Mantissas Test and generates is respective bokeh
+    chart.
+
+    Args:
+        mant_data : Mantissas data. May be a numpy.ndarray, a pandas Series,
+            a benford.Benford instance, or a benford.Mantissas instance
+    """
+    
+    def __init__(self, mant_data):
+        self.mantissas = _check_mantissa_data_(mant_data)
     
     @property
     def figure(self):
