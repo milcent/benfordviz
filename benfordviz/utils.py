@@ -1,7 +1,8 @@
 from numpy import array, ceil, cos, log10, linspace, pi, sin, sqrt, where
-from pandas import DataFrame
+from pandas import concat, DataFrame
 
-from .constants import FOUND_BAR_COLOR
+from .constants import (FOUND_BAR_COLOR, MANTISSAS_EXPECTED_COLOR,
+    MANTISSAS_FOUND_COLOR)
 
 
 def _get_upper_lower_bounds(expect_dist, sample_size:int, critical_z:float):
@@ -49,8 +50,16 @@ def _get_expected_found_mantissas_df_(mant_dist):
 
 def _get_mantissas_arc_plot_df_(mantissas):
     """Creates a data frame with the values to be used in the Mantissas
-    Arc Plot
+    Arc Plot and the colors to be used. The last row holds the means and
+    the color to be used in the gravity center.
     """
     x = cos(2 * pi * mantissas)
     y = sin(2 * pi * mantissas)
-    return DataFrame({"arc_x": x, "arc_y": y})
+    
+    arc_df = DataFrame({"arc_x": x, "arc_y": y}).append(
+                {"arc_x": x.mean(), "arc_y": y.mean()}, ignore_index=True)\
+                .assign(colors=MANTISSAS_EXPECTED_COLOR)
+
+    arc_df.iloc[-1, 2] = MANTISSAS_FOUND_COLOR
+    
+    return arc_df

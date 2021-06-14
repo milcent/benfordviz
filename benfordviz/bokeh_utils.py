@@ -91,7 +91,7 @@ def add_digit_test_figure(digit_test):
 
 
 def _ordered_mantissas_plot_(mant_dist):
-    """Creates the Ordered Mantissa plot
+    """Creates the Ordered Mantissas plot
 
     Args:
         mant_dist (numpy.ndarray): array with the mantissas distribution
@@ -136,10 +136,10 @@ def _mantissas_arc_plot_(mant_dist):
         bokeh.Figure: figure to be displayed
     """
     arc_df = _get_mantissas_arc_plot_df_(mant_dist)
-    gravity_center = arc_df.arc_x.mean(), arc_df.arc_y.mean()
+
     gc_coords = {
-        "x": gravity_center[0] - 0.05,
-        "y": gravity_center[1] - 0.1
+        "x": arc_df.arc_x.iloc[-1] - 0.05,
+        "y": arc_df.arc_y.iloc[-1] - 0.1
     }
 
     source = ColumnDataSource(arc_df)
@@ -154,18 +154,11 @@ def _mantissas_arc_plot_(mant_dist):
                     ]
     )
 
-
-    fig.scatter(x="arc_x", y="arc_y", color=MANTISSAS_EXPECTED_COLOR,
-                source=source)
-    
-    fig.scatter(x=gravity_center[0], y=gravity_center[1],
-                color=MANTISSAS_FOUND_COLOR)
+    fig.scatter(x="arc_x", y="arc_y", color="colors", source=source)
 
     grav_center_annot = Label(
         x=gc_coords["x"], y=gc_coords["y"],
-        text=f"Gravity Center: x({gravity_center[0]:.3f})" +\
-        f"; y({gravity_center[1]:.3f})", text_align="right",
-        text_font_size="14px"
+        text=f"Gravity Center",text_align="right", text_font_size="14px"
     )
 
     fig.add_layout(grav_center_annot)
