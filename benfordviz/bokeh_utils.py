@@ -1,12 +1,14 @@
 from math import pi
-from bokeh.models import NumeralTickFormatter
+from bokeh.models import NumeralTickFormatter, Label
 from bokeh.models.tools import HoverTool
 from bokeh.models.tickers import FixedTicker
 from bokeh.plotting import figure, ColumnDataSource
-from .constants import (EXPECT_LINE_COLOR, BACKGROUND_COLOR,
-                        OUT_OF_BOUNDS_BAR_COLOR , TOOLTIPS_BASE)
+from bokeh.layouts import row
+from .constants import (EXPECT_LINE_COLOR, BACKGROUND_COLOR, TOOLTIPS_BASE,
+    OUT_OF_BOUNDS_BAR_COLOR, MANTISSAS_EXPECTED_COLOR, MANTISSAS_FOUND_COLOR)
 from .utils import (_get_in_out_bound_colors_, _get_upper_lower_bounds,
-                    _get_x_range_, _set_n_int_places_, _get_base_bar_colors_)
+    _get_x_range_, _set_n_int_places_, _get_base_bar_colors_,
+    _get_expected_found_mantissas_df_, _get_mantissas_arc_plot_df_)
 
 
 def _get_tooltips_(name:str, n_int_places:int,
@@ -21,8 +23,8 @@ def _get_tooltips_(name:str, n_int_places:int,
 
 # LOOONG function! Could be broken into at least three, but did not see 
 # the need for separation
-def add_figure(digit_test):
-
+def add_digit_test_figure(digit_test):
+            
     max_y = max(digit_test.Found.max(), digit_test.Expected.max())
     len_dig = len(digit_test)
     n_int_places = _set_n_int_places_(len_dig)
@@ -75,3 +77,78 @@ def add_figure(digit_test):
     fig.legend.click_policy = "hide"
     
     return fig
+
+
+def _ordered_mantissas_plot_(mant_dist):
+    source = ColumnDataSource(_get_expected_found_mantissas_df_(mant_dist))
+    fig = figure(
+        title="Ordered Mantissas Plot", x_range=(0,1),
+        y_range=(0, 1), aspect_ratio=1.0, sizing_mode="scale_both"
+    )
+    fig.line(x="Expected", y="Expected", width=2, legend_label="Expected",
+             color=MANTISSAS_EXPECTED_COLOR, source=source)
+
+    fig.line(x="Expected", y="Mantissas", width=3, legend_label="Mantissas",
+             line_dash="dashed", color=MANTISSAS_FOUND_COLOR, source=source)
+
+    fig.add_tools(HoverTool(tooltips=[
+                    ("Expected", "@Expected{0.0000}"),
+                    ("Mantissa", "@Mantissas{0.0000}")
+                    ])
+                )
+    
+    fig.xgrid.visible, fig.ygrid.visible = False, False
+    fig.background_fill_color = BACKGROUND_COLOR
+    fig.legend.background_fill_color = None
+    fig.legend.location = "top_left"
+    fig.legend.border_line_color = None
+    fig.legend.click_policy = "hide"
+
+    return fig
+
+
+def _mantissas_arc_plot_(mant_dist):
+    arc_df = _get_mantissas_arc_plot_df_(mant_dist)
+    gravity_center = arc_df.arc_x.mean(), arc_df.arc_y.mean()
+    gc_coords = {
+        "x": gravity_center[0] - 0.05,
+        "y": gravity_center[1] - 0.1
+    }
+
+    source = ColumnDataSource(arc_df)
+
+    fig = figure(
+        title="Mantissas Arc Plot", x_range=(-1.1, 1.1),
+        y_range=(-1.1, 1.1), aspect_ratio=1.0, sizing_mode="scale_both",
+        x_axis_label="cos(2.П.mantissas)", y_axis_label="sin(2.П.mantissas)",
+        tooltips=[
+                    ("X_coord", "@arc_x{0.0000}"),
+                    ("Y_coord", "@arc_y{0.0000}")
+                    ]
+    )
+
+
+    fig.scatter(x="arc_x", y="arc_y", color=MANTISSAS_EXPECTED_COLOR,
+                source=source)
+    
+    fig.scatter(x=gravity_center[0], y=gravity_center[1],
+                color=MANTISSAS_FOUND_COLOR)
+
+    grav_center_annot = Label(
+        x=gc_coords["x"], y=gc_coords["y"],
+        text=f"Gravity Center: x({gravity_center[0]:.3f})" +\
+        f"; y({gravity_center[1]:.3f})", text_align="right",
+        text_font_size="14px"
+    )
+
+    fig.add_layout(grav_center_annot)
+
+    fig.background_fill_color = BACKGROUND_COLOR
+
+    return fig
+
+
+def add_mantissas_test_figures(mant_dist):
+    ordered_mant_fig = _ordered_mantissas_plot_(mant_dist)
+    mant_arc_fig = _mantissas_arc_plot_(mant_dist)
+    return row(ordered_mant_fig, mant_arc_fig)
