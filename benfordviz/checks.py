@@ -1,5 +1,6 @@
 from numpy import ndarray
 from pandas import Series
+
 from benford import Test, Benford, Mantissas
 
 

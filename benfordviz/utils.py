@@ -44,8 +44,8 @@ def _get_expected_found_mantissas_df_(mant_dist):
     """Creates a dataframe with the found and the expected mantissas 
     """
     mant_dist.sort()
-    expecetd = linspace(0, .99999999, len(mant_dist))
-    return DataFrame({"Expected": expecetd, "Mantissas": mant_dist})
+    expected = linspace(0, .99999999, len(mant_dist))
+    return DataFrame({"Expected": expected, "Mantissas": mant_dist})
 
 
 def _get_mantissas_arc_plot_df_(mantissas):
@@ -63,3 +63,4 @@ def _get_mantissas_arc_plot_df_(mantissas):
     arc_df.iloc[-1, 2] = MANTISSAS_FOUND_COLOR
     
     return arc_df
+    
