@@ -81,15 +81,33 @@ The `bokeh_chart` function then retuns a `bokeh` `figure`, which you can then pa
 
 ```python
 from bokeh.plotting import output_notebook, show
-from benfordviz import bokeh_chart
+from benfordviz import bokeh_digits_chart
 
 output_notebook()
-```
 
-```python
-#plotting the First Two Digits Test ('F2D')
-benf_bokeh_f2d_fig = bokeh_chart(bo.F2D)
+# plotting the First Two Digits Test ('F2D')
+benf_bokeh_f2d_fig = bokeh_digits_chart(bo.F2D)
 show(benf_bokeh_f2d_fig)
 ```
 
 ![First Two Digits Bokeh gif](https://github.com/milcent/benfordviz/blob/main/figures/f2d_bokeh_gif.gif)
+
+Or if you can directly instantiate a `BokehDigitsChart` object, and use its `figure`, like so:
+
+```python
+from benfordviz.bokeh_plotting import BokehDigitsChart
+
+bdc_f2d = BokehDigitsChart(bo.F2D)
+show(bdc_f2d.figure)
+```
+
+As of version 0.2.0, we also have the Manitssas Tests chart, which is a union of the Ordered Mantissas and Mantissas Arc Plots, side-by-side. Since the mantissas assessment is made on the whole set (not segregated by digits), you can pass the Benford instance directly to it.
+
+```python
+from benfordviz import bokeh_mantissas_chart
+
+benf_bokeh_mant_fig = bokeh_mantissas_chart(bo) 
+show(benf_bokeh_mant_fig)
+```
+
+![First Two Digits Bokeh gif](https://github.com/milcent/benfordviz/blob/main/figures/mantissas_plots.png)
