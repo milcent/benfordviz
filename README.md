@@ -92,7 +92,7 @@ show(benf_bokeh_f2d_fig)
 
 ![First Two Digits Bokeh gif](https://github.com/milcent/benfordviz/blob/main/figures/f2d_bokeh_gif.gif)
 
-Or if you can directly instantiate a `BokehDigitsChart` object, and use its `figure`, like so:
+Or you can directly instantiate a `BokehDigitsChart` object, and use its `figure`, like so:
 
 ```python
 from benfordviz.bokeh_plotting import BokehDigitsChart
@@ -101,7 +101,7 @@ bdc_f2d = BokehDigitsChart(bo.F2D)
 show(bdc_f2d.figure)
 ```
 
-As of version 0.2.0, we also have the Manitssas Tests chart, which is a union of the Ordered Mantissas and Mantissas Arc Plots, side-by-side. Since the mantissas assessment is made on the whole set (not segregated by digits), you can pass the Benford instance directly to it.
+As of version 0.2.0, we also have the Manitssas Tests chart, which is a union of the Ordered Mantissas and the Mantissas Arc Plots, side-by-side. Since the mantissas assessment is made on the whole set (not segregated by digits), you can pass the Benford instance directly to it.
 
 ```python
 from benfordviz import bokeh_mantissas_chart
