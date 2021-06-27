@@ -110,4 +110,4 @@ benf_bokeh_mant_fig = bokeh_mantissas_chart(bo)
 show(benf_bokeh_mant_fig)
 ```
 
-![First Two Digits Bokeh gif](https://github.com/milcent/benfordviz/blob/main/figures/mantissas_plots.png)
+![Mantissas Chart](https://github.com/milcent/benfordviz/blob/main/figures/mantissas_plots.png)
