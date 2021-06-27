@@ -1,5 +1,5 @@
-from .checks import _check_digit_test_, _check_mantissa_data_
 from .bokeh_utils import add_digit_test_figure, add_mantissas_test_figures
+from .checks import _check_digit_test_, _check_mantissa_data_
 
 
 class BokehDigitsChart:

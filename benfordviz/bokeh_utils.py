@@ -4,6 +4,7 @@ from bokeh.models.tools import HoverTool
 from bokeh.models.tickers import FixedTicker
 from bokeh.plotting import figure, ColumnDataSource
 from bokeh.layouts import row
+
 from .constants import (EXPECT_LINE_COLOR, BACKGROUND_COLOR, TOOLTIPS_BASE,
     OUT_OF_BOUNDS_BAR_COLOR, MANTISSAS_EXPECTED_COLOR, MANTISSAS_FOUND_COLOR)
 from .utils import (_get_in_out_bound_colors_, _get_upper_lower_bounds,
