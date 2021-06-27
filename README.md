@@ -20,7 +20,8 @@ If you find *`benfordviz`* useful in your research, please consider adding the f
       howpublished = {\url{https://github.com/milcent/benfordviz}},
 }
 ```
-`current version = 0.1.0`
+
+`current version = 0.2.0`
 
 ### See [release notes](https://github.com/milcent/benfordviz/releases/) for details of features and bugs.
 

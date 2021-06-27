@@ -7,18 +7,18 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='benfordviz',
-      version='0.1.0',
+      version='0.2.0',
       description='A library providing interactive plotting to benford-py',
       long_description=long_description,
       long_description_content_type='text/markdown',
       url='https://github.com/milcent/benfordviz',
-      download_url='https://github.com/milcent/benfordviz/archive/v0.1.0.tar.gz',
+      download_url='https://github.com/milcent/benfordviz/archive/v0.2.0.tar.gz',
       author='Marcel Milcent',
       author_email='marcelmilcent@gmail.com',
       license='BSD 3-Clause',
       packages=['benfordviz'],
       install_requires=[
-          'benford-py>=0.4.2',
+          'benford-py',
           'bokeh>=2.2.2'
       ],
       zip_safe=False,
