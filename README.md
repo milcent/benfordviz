@@ -1,3 +1,5 @@
+[![Downloads](https://pepy.tech/badge/benfordviz)](https://pepy.tech/project/benfordviz)
+
 # benfordviz
 
 ### Interactive plotting to benford_py.
